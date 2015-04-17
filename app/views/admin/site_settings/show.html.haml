@@ -9,6 +9,11 @@
         %span.help-block 必填
 
       .form-group
+        = label_tag 'settings[welcome_tip]', '欢迎提示'
+        = text_field_tag 'settings[welcome_tip]', @settings.welcome_tip, :class => 'form-control'
+        %span.help-block 网站欢迎提示，显示在首页话题列表上方
+
+      .form-group
         = label_tag 'settings[short_intro]', '简短介绍'
         = text_field_tag 'settings[short_intro]', @settings.short_intro, :class => 'form-control'
         %span.help-block 网站简短介绍, 显示在右侧边栏
