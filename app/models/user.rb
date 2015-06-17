@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
   # Setup accessible (or protected) attributes for your model
-  attr_accessor :captcha
+  attr_accessor :captcha, :captcha_key
 
   mount_uploader :avatar, AvatarUploader
 
@@ -147,9 +147,12 @@ class User < ActiveRecord::Base
     not_blocked? ? super : :blocked
   end
 
-  def verify_captcha(correct_captcha)
+  def verify_captcha
     return true unless Siteconf.show_captcha?
-    if self.captcha.downcase == correct_captcha.downcase
+    return false if captcha_key.empty?
+    cap = Captcha.find_by_key(captcha_key)
+    if cap and captcha.downcase == cap.code.downcase
+      cap.delete
       true
     else
       self.errors.add(:captcha, "验证码不正确")

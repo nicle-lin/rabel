@@ -5,9 +5,12 @@
   = f.input :password, :label => '密码'
   = f.input :password_confirmation, :label => '密码确认'
   - if Siteconf.show_captcha?
+    - session[:key] ||= Captcha.generate_key
+    - key = session[:key]
     .form-group
       %label 验证码
-      %p= image_tag captcha_path(:format => :gif), :class => :captcha
+      %p= image_tag captcha_path(format: :gif, key: key), :class => :captcha
+      = hidden_field_tag "user[captcha_key]", key
     = f.input :captcha, :label => false
   .form-actions
     = f.submit '加入社区', :class => 'btn btn-small btn-primary'

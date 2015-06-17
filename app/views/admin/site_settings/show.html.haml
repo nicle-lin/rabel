@@ -28,16 +28,6 @@
         = select_tag 'settings[default_search_engine]', options_for_select([['谷歌', 'google'], ['百度', 'baidu'], ['必应', 'bing']], @settings.default_search_engine), :class => 'form-control'
 
       .form-group
-        = label_tag 'settings[show_captcha]', '注册验证码'
-        .radio
-          %label
-            = radio_button_tag 'settings[show_captcha]', 'on', @settings.show_captcha?
-            开启
-          %label
-            = radio_button_tag 'settings[show_captcha]', 'off', !@settings.show_captcha?
-            关闭
-
-      .form-group
         = label_tag 'settings[show_community_stats]', '社区运行状态'
         .radio
           %label

@@ -148,11 +148,11 @@ GEM
     minitest (5.5.1)
     multi_json (1.11.0)
     multi_test (0.1.2)
-    mysql2 (0.3.18)
     netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     orm_adapter (0.5.0)
+    pg (0.18.2)
     qiniu (6.2.4)
       json (~> 1.7)
       mime-types (~> 1.19)
@@ -310,7 +310,7 @@ DEPENDENCIES
   kaminari (~> 0.16.1)
   kgio
   mime-types
-  mysql2
+  pg
   quiet_assets
   rabel-meta (= 1.5)
   rails (= 4.2.0)

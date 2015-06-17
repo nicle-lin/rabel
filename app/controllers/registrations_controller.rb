@@ -3,7 +3,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create
     build_resource(user_params)
 
-    if resource.verify_captcha(session[:captcha]) and resource.save
+    if resource.verify_captcha and resource.save
       if resource.active_for_authentication?
         set_flash_message :notice, :signed_up if is_navigational_format?
         sign_in(resource_name, resource)
@@ -26,7 +26,7 @@ class RegistrationsController < Devise::RegistrationsController
                                  :password,
                                  :password_confirmation,
                                  :nickname,
-                                 :captcha)
+                                 :captcha, :captcha_key)
   end
 
 end
